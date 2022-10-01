@@ -1,0 +1,9 @@
+while true
+do
+kdialog --msgbox "Message" --geometry 100X100+450-0
+#nope
+#xdotool search --name baresip key -
+xdotool search --name baresip key minus
+sleep 1
+done
+

@@ -1,0 +1,80 @@
+#sfs baresip frontend
+#for 600x1024 resolution
+#microphone not tested
+#messages and missed calls should appear in the terminal window
+#keep terminal window a fixed size so the dialogs will be visible at bottom
+#600x655 is the current size as shown in kwin which is different than drag size
+#terminal position is fixed at 0 0
+#kdialog should be set in kwin to forced on top of all windows
+#task manager should group so as to minimize all kdialog windows at once
+#there is the problem of the kdialog windows not being stuck to the terminal
+
+#clean up
+#this is not enough to clean everything up if the program ended sourly
+killall kdialog
+killall baresip
+killall SFS_PHONE
+
+#skeleton sip program startup
+konsole -e baresip&
+sleep 3
+
+#initial login
+CREDENTIALS_1="/uanew"
+CREDENTIALS_2="sip:account@providerhere;auth_user=userhere;auth_pass=passhere"
+#not working specific to the window we want
+#xdotool search --name baresip type $TOOT
+#only types a single key
+#xdotool search --name baresip key c
+#debug routine 1
+#sleep 5
+#WINDOW=$(xdotool getactivewindow)
+WINDOW=$(xdotool search --name baresip)
+#not working specific to the window we want
+#xdotool type "$CREDENTIALS" --window $WINDOW
+#the correct way
+#xdotool type --window $WINDOW $CREDENTIALS_1
+#xdotool search --name baresip key space
+#xdotool type --window $WINDOW $CREDENTIALS_2
+#xdotool search --name baresip key enter
+
+#start dialog children
+~/PICKUP_DIALOG&
+PID_1=$(echo $!)
+
+~/HANGUP_DIALOG&
+PID_2=$(echo $!)
+
+~/DIAL_DIALOG&
+PID_3=$(echo $!)
+
+~/MESSAGE_DIALOG&
+PID_4=$(echo $!)
+
+~/PEER_DIALOG&
+PID_5=$(echo $!)
+
+~/CANCEL_DIALOG&
+PID_6=$(echo $!)
+
+~/STATUS_DIALOG&
+PID_7=$(echo $!)
+
+#start quit dialog     
+#this closes everything on command
+#when the user clicks ok here it continues because there is no ampersand
+#plenty of room for more dialogs to the left and right
+#center
+#kdialog --msgbox "Quit" --geometry 100X100+230-225
+#right
+kdialog --msgbox "Quit        " --geometry 100X100+470-225
+kill $PID_1
+kill $PID_2
+kill $PID_3
+kill $PID_4
+kill $PID_5
+kill $PID_6
+kill $PID_7
+killall kdialog
+killall baresip
+

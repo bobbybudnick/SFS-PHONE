@@ -1,0 +1,7 @@
+while true
+do
+kdialog --msgbox "Status " --geometry 100X100+300-225
+xdotool search --name baresip key c
+sleep 1
+done
+

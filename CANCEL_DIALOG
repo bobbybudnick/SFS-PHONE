@@ -1,0 +1,9 @@
+while true
+do
+kdialog --msgbox "Cancel  " --geometry 100X100+150-225
+WINDOW=$(xdotool search --name baresip)
+xdotool type --window $WINDOW "/quit"
+xdotool search --name baresip key enter
+sleep 1
+done
+

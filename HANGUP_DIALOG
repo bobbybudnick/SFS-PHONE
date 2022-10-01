@@ -1,0 +1,9 @@
+while true
+do
+kdialog --msgbox "Hangup" --geometry 100X100+150-0
+#which key is it??? b should work also
+#xdotool search --name baresip key escape
+xdotool search --name baresip key b
+sleep 1
+done
+

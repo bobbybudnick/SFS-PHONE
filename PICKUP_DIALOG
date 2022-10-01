@@ -1,0 +1,7 @@
+while true
+do
+kdialog --msgbox "Pickup   " --geometry 100X100+0-0
+xdotool search --name baresip key a
+sleep 1
+done
+

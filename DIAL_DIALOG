@@ -1,0 +1,7 @@
+while true
+do
+kdialog --msgbox "Call      " --geometry 100X100+300-0
+xdotool search --name baresip key d
+sleep 1
+done
+

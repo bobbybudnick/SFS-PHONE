@@ -1,0 +1,7 @@
+while true
+do
+kdialog --msgbox "Peer      " --geometry 100X100+0-225
+xdotool search --name baresip key equal
+sleep 1
+done
+
